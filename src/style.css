@@ -1,0 +1,53 @@
+:root {
+  font-family: Roboto Mono, Arial, system-ui, sans-serif;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: left;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --color-text: #F2F0FF;
+  --color-text-2: #b5b3bc;
+  --color-background: #221c3e;
+  --color-background-main: #0f0920;
+  --color-accent: #5899ff;
+  --color-primary: #0368ff;
+  --color-secondary: #ff3e95;
+  
+}
+
+.--color-gradient-1 {
+  background: linear-gradient(135.00deg, rgb(3, 104, 255) 0%,rgb(255, 62, 149) 100%);
+} 
+
+.--color-gradient-2 {
+  background: linear-gradient(45.00deg, rgb(3, 104, 255),rgb(88, 153, 255) 100%);
+} 
+
+
+body {
+  
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  flex-direction: column;
+  color: #0C0C0C;
+  background-color: var(--color-background-main);
+}
+
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
