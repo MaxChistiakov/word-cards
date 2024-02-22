@@ -50,8 +50,7 @@ export const useAuth = () => {
       const result = await signInWithPopup(auth, provider)
 
       localUser.value = result.user
-      console.log(localUser.value.uid)
-      console.log(result.user.uid)
+
     } catch(error) {
       hasFailed.value = true
       localError.value = error

@@ -24,14 +24,13 @@
     import { ref } from 'vue'
     import { db } from '@/services/firebase.service'
     import { addDoc, collection  } from 'firebase/firestore'
-    import { localUser } from '@/composables/auth/auth.composable'
+    import { userUID } from '@/composables/event-bus/bus.composable'
 
     const word = ref('')
     const description = ref('')
 
-
     const addCard = () => {
-        addDoc(collection(db, `${localUser.value.uid}`), {
+        addDoc(collection(db, `${userUID.value}`), {
             word: word.value,
             description: description.value
         })
