@@ -29,7 +29,15 @@
 
 <template>
   <div class="photo">
-    <img :src="photoSrc" :alt="photoSrc">
+    <img 
+    v-if="store.localUser"
+    :style="{ 'background-image': `url(${photoSrc})` }"
+    >
+    <img 
+    v-else
+    src="../assets/icon-google.svg"
+    class="google-icon"
+    >
   </div>
   <div class="google-login">
     <Button 
@@ -53,6 +61,10 @@
   gap: 25px;
   margin-bottom: 20px;
 }
+
+/* .google-icon {
+  background-image: url("~@/assets/icon-google.svg");
+} */
 
 img {
   width: 100px;

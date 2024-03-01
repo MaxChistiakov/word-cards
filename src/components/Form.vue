@@ -2,11 +2,13 @@
     <div class="form">
         <div class="wrapper">
             <input   
+            :class="{ 'input-error': isError  }"
             placeholder="enter the word"
             v-model="word">
         </div>
         <div class="wrapper">
             <input 
+            :class="{ 'input-error': isError  }"
             placeholder="enter the description"
             v-model="description"
             >
@@ -25,15 +27,23 @@
     // import { addCard } from '@/composables/database/database.composable'
     import { useCardStore } from '@/store/cardStore'
 
+    let isError = ref(false)
+
     const word = ref('')
     const description = ref('')
+
     
     const store = useCardStore()
 
-    function addWord () {
-        store.addCard(word.value, description.value)
-        word.value = ''
-        description.value = ''
+    function addWord () {   
+        if(word.value.length === 0 || description.value.length === 0) {
+            isError.value = true
+        } else {
+            store.addCard(word.value, description.value)
+            word.value = ''
+            description.value = ''
+            isError.value = false
+        }
     }
 </script>
 
@@ -47,6 +57,15 @@ input {
     background-color: var(--color-background-main);
     color: #FFFFFF;
     padding-left: 16px;
+}
+
+.input-error {
+    border: 1px solid var(--color-secondary);
+    
+}
+
+.input-error::placeholder {
+    color: var(--color-secondary);
 }
 
 ::placeholder {
