@@ -14,7 +14,7 @@
         <Button 
             id="send-btn"
             name="send"
-            @click="addCard"
+            @click="addWord"
         />
     </div>
 </template>
@@ -22,23 +22,19 @@
 <script setup lang="ts">
     import Button from '@/UI-components/Button.vue'
     import { ref } from 'vue'
-    import { db } from '@/services/firebase.service'
-    import { addDoc, collection  } from 'firebase/firestore'
-    import { userUID } from '@/composables/event-bus/bus.composable'
+    // import { addCard } from '@/composables/database/database.composable'
+    import { useCardStore } from '@/store/cardStore'
 
     const word = ref('')
     const description = ref('')
+    
+    const store = useCardStore()
 
-    const addCard = () => {
-        addDoc(collection(db, `${userUID.value}`), {
-            word: word.value,
-            description: description.value
-        })
+    function addWord () {
+        store.addCard(word.value, description.value)
         word.value = ''
         description.value = ''
     }
-
-
 </script>
 
 <style>

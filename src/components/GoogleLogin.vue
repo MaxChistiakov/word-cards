@@ -1,10 +1,16 @@
 <script setup lang="ts">
   import Button from '@/UI-components/Button.vue'
-  import { useAuth } from '@/composables/auth/auth.composable'
-  import { onBeforeMount, onUnmounted } from 'vue'
-  import { onAuth } from '@/composables/event-bus/bus.composable'
-  
-  const auth = useAuth()
+  import { onBeforeMount, onUnmounted, watch } from 'vue'
+  import { useAuthStore } from '@/store/authStore'
+
+  const store = useAuthStore()
+  const auth = store.useAuth()
+
+  let photoSrc: string
+
+  watch(store, () => {
+    photoSrc = store.userPhoto!
+  })
 
   onBeforeMount(() => {
     auth.watchAuthState()
@@ -22,9 +28,12 @@
 </script>
 
 <template>
+  <div class="photo">
+    <img :src="photoSrc" :alt="photoSrc">
+  </div>
   <div class="google-login">
     <Button 
-      v-if="onAuth"
+      v-if="store.localUser"
       name="Logout"
       @click="handleLogoutClick"
     />
@@ -43,5 +52,12 @@
   justify-content: center;
   gap: 25px;
   margin-bottom: 20px;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: white;
 }
 </style>

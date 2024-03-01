@@ -6,6 +6,10 @@
   line-height: 24px;
   letter-spacing: 0%;
   text-align: left;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -41,6 +45,8 @@ body {
   flex-direction: column;
   color: #0C0C0C;
   background-color: var(--color-background-main);
+
+  
 }
 
 
@@ -51,3 +57,17 @@ body {
   text-align: center;
 }
 
+::-webkit-scrollbar {
+  width: 12px;               /* ширина всей полосы прокрутки */
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background-main);        /* цвет зоны отслеживания */
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-background);    /* цвет бегунка */
+  border-radius: 20px;       /* округлось бегунка */
+  border: 3px solid var(--color-background-main);  /* отступ вокруг бегунка */
+}

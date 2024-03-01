@@ -1,72 +1,75 @@
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  User,
-  onAuthStateChanged,
-  Unsubscribe,
-  signOut
-} from 'firebase/auth'
-import { Ref, ref } from 'vue'
+// import {
+//   getAuth,
+//   GoogleAuthProvider,
+//   signInWithPopup,
+//   User,
+//   onAuthStateChanged,
+//   Unsubscribe,
+//   signOut
+// } from 'firebase/auth'
+// import { Ref, ref } from 'vue'
 
-export const localUser: Ref<User | null> = ref(null)
+// import { useAuthStore } from '@/store/authStore'
 
-let unwatchAuthState: Unsubscribe = () => {}
+// export const localUser: Ref<User | null> = ref(null)
 
-export const useAuth = () => {
-  const isLoggedIn = ref(false)
-  const isLoading = ref(false)
-  const hasFailed = ref(false)  
-  const localError: Ref<unknown> = ref(null)
+// let unwatchAuthState: Unsubscribe = () => {}
 
-  const auth = getAuth()
 
-  const watchAuthState = () => {
-    unwatchAuthState()
+// export const useAuth = () => {
+//   const isLoggedIn = ref(false)
+//   const isLoading = ref(false)
+//   const hasFailed = ref(false)  
+//   const localError: Ref<unknown> = ref(null)
 
-    unwatchAuthState = onAuthStateChanged(auth, user => {
-      if (user) {
-        localUser.value = user
-      } else {
-        localUser.value = null
-      }
-    })
-  }
+//   const auth = getAuth()
 
-  const logout = async () => {
-    await signOut(auth)
+//   const watchAuthState = () => {
+//     unwatchAuthState()
 
-    localUser.value = null
-  }
+//     unwatchAuthState = onAuthStateChanged(auth, user => {
+//       if (user) {
+//         localUser.value = user
+//       } else {
+//         localUser.value = null
+//       }
+//     })
+//   }
+
+//   const logout = async () => {
+//     await signOut(auth)
+
+//     localUser.value = null
+//   }
  
-  const loginInWithGoogle = async (): Promise<void> => {
-    const provider = new GoogleAuthProvider()
+//   const loginInWithGoogle = async (): Promise<void> => {
+//     const provider = new GoogleAuthProvider()
 
-    isLoading.value = true
-    hasFailed.value = false
-    localError.value = null
+//     isLoading.value = true
+//     hasFailed.value = false
+//     localError.value = null
 
-    try {
-      const result = await signInWithPopup(auth, provider)
+//     try {
+//       const result = await signInWithPopup(auth, provider)
 
-      localUser.value = result.user
+//       localUser.value = result.user
 
-    } catch(error) {
-      hasFailed.value = true
-      localError.value = error
-    } finally {
-      isLoggedIn.value = true
-      isLoading.value = false
-    }
-  }
+//     } catch(error) {
+//       hasFailed.value = true
+//       localError.value = error
+//     } finally {
+//       isLoggedIn.value = true
+//       isLoading.value = false
+//     }
+//   }
 
 
-  return {
-    user: localUser,
-    error: localError,
-    loginInWithGoogle,
-    watchAuthState,
-    unwatchAuthState,
-    logout
-  }
-}
+//   return {
+//     user: localUser,
+//     error: localError,
+//     loginInWithGoogle,
+//     watchAuthState,
+//     unwatchAuthState,
+//     logout
+//   }
+// }
