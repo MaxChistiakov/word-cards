@@ -1,5 +1,5 @@
 <template>
-    <div class="collections"
+    <div class="collection"
         v-if="cardStore.cards.length > 0"
     >
         <Card
@@ -22,9 +22,10 @@ cardStore.getDatabase()
 </script>
 
 <style>
-.collections {
+.collection {
     display: flex;
     flex-wrap: wrap;
+    width: 1000px;
     gap: 20px;
 }
 </style>

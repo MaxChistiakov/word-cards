@@ -28,47 +28,46 @@
 </script>
 
 <template>
-  <div class="photo">
-    <img 
-    v-if="store.localUser"
-    :style="{ 'background-image': `url(${photoSrc})` }"
-    >
-    <img 
-    v-else
-    src="../assets/icon-google.svg"
-    class="google-icon"
-    >
-  </div>
-  <div class="google-login">
-    <Button 
-      v-if="store.localUser"
-      name="Logout"
-      @click="handleLogoutClick"
-    />
-    <Button 
-      v-else
-      @click="handleLoginWithGoogleClick"
-      name="Login with Google"
-    />
+  <div class="login">
+        <img 
+        v-if="store.localUser"
+        class="user-photo"
+        :style="{ 'background-image': `url(${photoSrc})` }"
+        >
+        <img 
+        v-else
+        src="../assets/icon-google.svg"
+        class="google-icon"
+        >
+    <div class="google-login">
+      <Button 
+        v-if="store.localUser"
+        name="Logout"
+        @click="handleLogoutClick"
+      />
+      <Button 
+        v-else
+        @click="handleLoginWithGoogleClick"
+        name="Login with Google"
+      />
+    </div>
   </div>
 </template>
 
 <style>
-.google-login {
+.login {
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 25px;
-  margin-bottom: 20px;
+  gap: 15px;
 }
 
-/* .google-icon {
-  background-image: url("~@/assets/icon-google.svg");
-} */
+.user-photo {
+  background-size: contain;
+}
 
 img {
-  width: 100px;
-  height: 100px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background-color: white;
 }

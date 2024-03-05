@@ -1,5 +1,8 @@
 <template>
-    <div class="card">
+    <div 
+    class="card"
+    draggable="true"
+    >
         <div class="deleteCard"
             @click="removeCard"
         >
@@ -86,5 +89,4 @@ const removeCard = () => {
     right: 10px;
     z-index: 1;
 }
-
 </style>
